@@ -41,28 +41,28 @@ const Blog = ({ blog, onLike, onDelete, currentUser }) => {
     blog.user &&
     (blog.user.username === currentUser.username || blog.user.id === currentUser.id)
 
-  return (
-    <div style={blogStyle}>
-      <div>
-        {blog.title} {blog.author}
-        <button onClick={toggleVisibility}>
-          {visible ? 'hide' : 'view'}
-        </button>
-      </div>
-
-      {visible && (
+    return (
+      <div style={blogStyle} data-testid="blog-item">
         <div>
-          <div>{blog.url}</div>
-          <div>
-            likes {blog.likes}{' '}
-            <button onClick={handleLike}>like</button>
-          </div>
-          <div>{blog.user?.name || blog.user?.username || 'unknown'}</div>
-          {isAuthor && <button onClick={handleDelete}>remove</button>}
+          {blog.title} {blog.author}
+          <button onClick={toggleVisibility}>
+            {visible ? 'hide' : 'view'}
+          </button>
         </div>
-      )}
-    </div>
-  )
+    
+        {visible && (
+          <div>
+            <div>{blog.url}</div>
+            <div>
+              likes {blog.likes}{' '}
+              <button onClick={handleLike}>like</button>
+            </div>
+            <div>{blog.user?.name || blog.user?.username || 'unknown'}</div>
+            {isAuthor && <button onClick={handleDelete}>remove</button>}
+          </div>
+        )}
+      </div>
+    )    
 }
 
 Blog.propTypes = {
